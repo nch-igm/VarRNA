@@ -1,0 +1,6 @@
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene name">
+##INFO=<ID=TPM,Number=1,Type=Float,Description="TPM calculated by Salmon">
+##INFO=<ID=LENGTH,Number=1,Type=Float,Description="Length of transcript calculated by Salmon">
+##INFO=<ID=EFF_LENGTH,Number=1,Type=Float,Description="Effective length of transcript calculated by Salmon">
+##INFO=<ID=NUM_READS,Number=1,Type=Float,Description="Number of reads calculated by Salmon">
+##INFO=<ID=TRANS_TYPE,Number=1,Type=String,Description="Transcript type">

@@ -1,0 +1,17 @@
+shell.prefix("source $HOME/miniconda3/etc/profile.d/conda.sh; conda activate varoc; ")
+
+include: "rules/setup.smk"
+
+rule all:
+    input:
+        get_all_inputs()
+
+include: "rules/process_bam.smk"
+include: "rules/bam_to_fastq.smk"
+include: "rules/salmon.smk"
+include: "rules/variant_calling.smk"
+include: "rules/filtering.smk"
+include: "rules/annotations.smk"
+include: "rules/query_vcfs.smk"
+include: "rules/process_features.smk"
+include: "rules/classify_variants.smk"

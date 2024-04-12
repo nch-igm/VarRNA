@@ -1,0 +1,105 @@
+######################################################
+# EDIT THESE FILES TO ADD YOUR OWN SAMPLE PATHS 
+samples: "../config/samples.csv"
+######################################################
+
+dependencies:
+  salmon: "../dependencies/salmon-1.9.0_linux_x86_64/bin/salmon"
+  salmon_index: "../resources/alias/hg38/salmon_partial_sa_index/default/"
+  annovar: "../dependencies/annovar"
+  annovar_db: "../dependencies/human_db/"
+
+reference:
+  fasta: "../resources/GRCh38.p13.genome.fa"
+  gtf: "../resources/gencode.v43.primary_assembly.annotation.gtf"
+
+
+# These should preferrably in the resources directory, but no need to duplicate files right now...
+annotation_resources:
+  dpsnp: "../resources/dbsnp151_common.hg38.vcf.gz"
+  kg_indel: "/path/to/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz"
+  mills_devine: "/path/to/Homo_sapiens_assembly38.known_indels.vcf.gz"
+  exome_bed: "/path/to/IDT.Exomev2.targets.GRCh38.sorted.merged.bed"
+  rep_mask: "/path/to/repmask_hg38.bed"
+  rna_edit: "/path/to/RNAedit.sorted.vcf.gz"
+  genes_bed: "../resources/gencode.v43.primary_assembly.gene_name.bed.gz"
+
+params:
+  gatk:
+    BaseRecalibrator: ""
+    HaplotypeCaller:
+      misc: "--dont-use-soft-clipped-bases --max-reads-per-alignment-start 0 --pair-hmm-implementation AVX_LOGLESS_CACHING"
+      annotations: 
+        >-
+        -A BaseQuality
+        -A BaseQualityRankSumTest
+        -A FragmentLength
+        -A MappingQualityRankSumTest
+        -A MappingQuality
+        -A AlleleFraction
+        -A CountNs
+        -A Coverage
+        -A ReadPosition
+        -A ReadPosRankSumTest
+    Mutect2: "--dont-use-soft-clipped-bases --initial-tumor-lod 0 --tumor-lod-to-emit 0 --af-of-alleles-not-in-resource .004 --pruning-lod-threshold -4"
+  picard:
+    AddReadGroups: ""
+    MarkDuplicates: ""
+
+filtering:
+  coverage: "10"
+  vcf: "-f.,PASS -i 'MIN(FMT/DP)>10 & QUAL>100' -m2 -M2"
+
+querying: 
+  default:
+    >-
+      %CHROM %POS %REF %ALT %SAMPLE %QUAL
+      %FILTER %AD %AF %DP %GQ %GT
+      %INFO/AC %INFO/AF %INFO/AN %INFO/BaseQRankSum
+      %INFO/DP %INFO/ExcessHet %INFO/FS %INFO/MBQ
+      %INFO/MFRL %INFO/MLEAC %INFO/MLEAF %INFO/MMQ
+      %INFO/MPOS %INFO/MQ %INFO/MQRankSum %INFO/NCount
+      %INFO/QD %INFO/ReadPosRankSum %INFO/SOR
+      %INFO/Func.refGene %INFO/Gene.refGene %INFO/GeneDetail.refGene
+      %INFO/ExonicFunc.refGene %INFO/AAChange.refGene %INFO/CLNALLELEID
+      %INFO/CLNDN %INFO/CLNDISDB %INFO/CLNREVSTAT %INFO/CLNSIG %INFO/AF
+      %INFO/AF_raw %INFO/AF_male %INFO/AF_female %INFO/AF_afr %INFO/AF_ami
+      %INFO/AF_amr %INFO/AF_asj %INFO/AF_eas %INFO/AF_fin %INFO/AF_nfe
+      %INFO/AF_oth %INFO/AF_sas %INFO/SIFT_score %INFO/SIFT_converted_rankscore
+      %INFO/SIFT_pred %INFO/SIFT4G_score %INFO/SIFT4G_converted_rankscore
+      %INFO/SIFT4G_pred %INFO/Polyphen2_HDIV_score %INFO/Polyphen2_HDIV_rankscore
+      %INFO/Polyphen2_HDIV_pred %INFO/Polyphen2_HVAR_score %INFO/Polyphen2_HVAR_rankscore
+      %INFO/Polyphen2_HVAR_pred %INFO/LRT_score %INFO/LRT_converted_rankscore
+      %INFO/LRT_pred %INFO/MutationTaster_score %INFO/MutationTaster_converted_rankscore
+      %INFO/MutationTaster_pred %INFO/MutationAssessor_score %INFO/MutationAssessor_rankscore
+      %INFO/MutationAssessor_pred %INFO/FATHMM_score %INFO/FATHMM_converted_rankscore
+      %INFO/FATHMM_pred %INFO/PROVEAN_score %INFO/PROVEAN_converted_rankscore
+      %INFO/PROVEAN_pred %INFO/VEST4_score %INFO/VEST4_rankscore %INFO/MetaSVM_score
+      %INFO/MetaSVM_rankscore %INFO/MetaSVM_pred %INFO/MetaLR_score %INFO/MetaLR_rankscore
+      %INFO/MetaLR_pred %INFO/MetaRNN_score %INFO/MetaRNN_rankscore %INFO/MetaRNN_pred
+      %INFO/REVEL_rankscore %INFO/MutPred_score %INFO/MutPred_rankscore
+      %INFO/MVP_score %INFO/MVP_rankscore %INFO/MPC_score %INFO/MPC_rankscore
+      %INFO/PrimateAI_score %INFO/PrimateAI_rankscore
+      %INFO/PrimateAI_pred %INFO/DEOGEN2_score
+      %INFO/DEOGEN2_rankscore %INFO/DEOGEN2_pred
+      %INFO/BayesDel_addAF_score %INFO/BayesDel_addAF_rankscore
+      %INFO/BayesDel_addAF_pred %INFO/BayesDel_noAF_score
+      %INFO/BayesDel_noAF_rankscore %INFO/BayesDel_noAF_pred
+      %INFO/ClinPred_score %INFO/ClinPred_rankscore
+      %INFO/ClinPred_pred
+      %INFO/Aloft_pred %INFO/Aloft_Confidence
+      %INFO/CADD_raw %INFO/CADD_raw_rankscore
+      %INFO/CADD_phred %INFO/DANN_score
+      %INFO/DANN_rankscore
+      %INFO/GenoCanyon_score
+      %INFO/GenoCanyon_rankscore %INFO/integrated_fitCons_score
+      %INFO/integrated_fitCons_rankscore %INFO/integrated_confidence_value
+      %INFO/LINSIGHT %INFO/LINSIGHT_rankscore
+      %INFO/phyloP100way_vertebrate
+      %INFO/phyloP100way_vertebrate_rankscore %INFO/phyloP30way_mammalian
+      %INFO/phyloP30way_mammalian_rankscore %INFO/phastCons100way_vertebrate
+      %INFO/phastCons100way_vertebrate_rankscore %INFO/phastCons30way_mammalian
+      %INFO/phastCons30way_mammalian_rankscore %INFO/SiPhy_29way_logOdds
+      %INFO/SiPhy_29way_logOdds_rankscore %INFO/Interpro_domain
+      %INFO/GTEx_V8_gene %INFO/GTEx_V8_tissue
+      %INFO/TPM %INFO/LENGTH %INFO/EFF_LENGTH %INFO/NUM_READS %INFO/TRANS_TYPE
