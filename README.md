@@ -11,7 +11,7 @@ A conda environment is used to manage *almost* all packages. Please refer to the
 
 Create the micromamba environment and activate it.
 ```bash
-micromamba env create -f dependencies/conda_environment.yml
+micromamba env create -f dependencies/mamba_environment.yml
 micromamba activate varrna
 ```
 
