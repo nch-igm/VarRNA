@@ -5,26 +5,17 @@
 Setup
 =======
 
+## Installation
+
+A conda environment is used to manage *almost* all packages. Please refer to the following documentation to install micromamba (or conda), if not already installed: https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html.
+
+Create the micromamba environment and activate it.
+```bash
+micromamba env create -f dependencies/conda_environment.yml
+micromamba activate varrna
+```
+
 ## Dependencies
-
-A number of packages and resources are required to execute the varaiant calling pipeline successfully.
-
-### Conda
-
-A conda environment is used to manage *almost* all packages. Please refer to the following documentation to install miniconda, if not already installed: https://docs.conda.io/en/latest/miniconda.html.
-
-E.g., run the following in your home directory if miniconda is not already installed:
-
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
-bash Miniconda3-latest-Linux-x86_64.sh
-```
-
-Create the conda environment and activate it.
-```bash
-conda env create -f dependencies/conda_environment.yml
-conda activate varoc
-```
 
 ### ANNOVAR
 
