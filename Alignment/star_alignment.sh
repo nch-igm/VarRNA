@@ -3,8 +3,8 @@
 fasta="../resources/GRCh38.p13.genome.fa"
 gtf="../resources/gencode.v43.primary_assembly.annotation.gtf"
 
-r1=/igm/projects/Audrey_RNAseq_Analysis/data/nch-igm-research-cancer/$1/RNASeq/FASTQ/$1.R1.fastq.gz
-r2=/igm/projects/Audrey_RNAseq_Analysis/data/nch-igm-research-cancer/$1/RNASeq/FASTQ/$1.R2.fastq.gz
+r1=$1.R1.fastq.gz
+r2=$1.R2.fastq.gz
 
 outdir=../results/$1/BAMs
 
