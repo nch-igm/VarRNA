@@ -3,6 +3,9 @@
 
 `VarRNA` is a comprehensive pipeline designed to process RNA-Seq reads from tumor samples, starting with either FASTQ or BAM files. It identifies single nucleotide variants (SNVs) and indels, and classifies these variants as germline, somatic, or artifact. Leveraging Snakemake, `VarRNA` efficiently tracks each step and processes multiple samples in parallel. The pipeline requires minimal configuration of input sample paths and manages most dependencies through a micromamba (conda) environment.The models are set up to evaluate RNA-Seq data aligned to human reference version GRCh38.
 
+
+![Schematic](VarRNA-schematic.png)
+
 System Requirements
 ======
 
