@@ -1,0 +1,7 @@
+
+# Ignore dependencies
+dependencies/*
+!dependencies/mamba_environment.yml
+
+resources/*
+

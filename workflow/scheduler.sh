@@ -4,10 +4,10 @@
 #$ -j y
 
 
-conda activate tetra
+micromamba activate varrna
 snakemake -p \
     --cluster "qsub -pe smp {threads} -cwd -o qsub_logfiles -e qsub_logfiles" \
     --jobname "sm_{rule}_{wildcards.sample}_{jobid}" \
-    -j 48 \
+    --jobs 64 \
     --rerun-incomplete \
-    --latency-wait 60 
+    --latency-wait 10 

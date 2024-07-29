@@ -41,7 +41,6 @@ params:
         -A Coverage
         -A ReadPosition
         -A ReadPosRankSumTest
-    Mutect2: "--dont-use-soft-clipped-bases --initial-tumor-lod 0 --tumor-lod-to-emit 0 --af-of-alleles-not-in-resource .004 --pruning-lod-threshold -4"
   picard:
     AddReadGroups: ""
     MarkDuplicates: ""
