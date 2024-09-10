@@ -13,3 +13,4 @@ dependencies:
   - perl=5.32
   - python=3.9
   - snakemake=7.9.0
+  - pyfaidx=0.8.1.2
