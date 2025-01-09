@@ -12,5 +12,7 @@ dependencies:
   - pandas=1.4.3
   - perl=5.32
   - python=3.9
+  - scikit-learn=1.1.2
+  - xgboost=2.1.1
   - snakemake=7.9.0
   - pyfaidx=0.8.1.2
