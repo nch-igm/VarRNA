@@ -16,11 +16,15 @@ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/gencod
 # Salmon
 wget https://github.com/COMBINE-lab/salmon/releases/download/v1.9.0/salmon-1.9.0_linux_x86_64.tar.gz -P dependencies/
 tar -xvzf dependencies/salmon-1.9.0_linux_x86_64.tar.gz -C dependencies/
+dependencies/salmon-1.9.0_linux_x86_64/bin/salmon index -t $resources/gencode.v47.transcripts.fa.gz -i dependencies/gencode.v47.transcripts_index
+
+# dbSNP known sites for GATK BaseRecalibrator
+wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/00-common_all.vcf.gz -P $resources
 
 # Repeat Masker
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz -P $resources
 
-# REDI Portal
+#REDI Portal
 wget http://srv00.recas.ba.infn.it/webshare/ATLAS/donwload/TABLE1_hg38.txt.gz -P $resources
 
 # ANNOVAR databases
