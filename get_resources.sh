@@ -17,9 +17,6 @@ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/gencod
 wget https://github.com/COMBINE-lab/salmon/releases/download/v1.9.0/salmon-1.9.0_linux_x86_64.tar.gz -P dependencies/
 tar -xvzf dependencies/salmon-1.9.0_linux_x86_64.tar.gz -C dependencies/
 
-# Known sites for GATK BaseRecalibrator
-wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/00-common_all.vcf.gz -P $resources
-
 # Repeat Masker
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz -P $resources
 
