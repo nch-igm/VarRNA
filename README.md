@@ -57,7 +57,7 @@ bash process_resources.sh
 Input data
 ======
 
-## FASTQ files (recommended)
+## A. FASTQ files
 Prepare RNA-Seq FASTQ files by performing quality control (e.g., FastQC) and read trimming. Use the provided scripts to align reads with STAR:
 
 ```bash
@@ -68,7 +68,7 @@ bash star_alignment.sh <sample>  # Align reads
 ```
 
 
-## BAM files (optional)
+## B. BAM files
 
 Ensure consistency between the reference genome used for alignment and the pipeline’s reference. Update `config/config.yaml` (reference - fasta) to match the BAM file reference.
 
