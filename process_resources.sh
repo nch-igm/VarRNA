@@ -2,6 +2,9 @@
 
 resources="${1:-resources}"
 
+####### Create salmon index for transcript quantification ########
+dependencies/salmon-1.9.0_linux_x86_64/bin/salmon index -t $resources/gencode.v47.transcripts.fa.gz -i dependencies/gencode.v47.transcripts_index
+
 ####### Export some of the gtf information to BED file and merge gene regions of multiple entries ##############
 awk 'BEGIN{OFS="\t"} $3 == "gene" {
     gene_name = "UNDEFINED";
@@ -31,6 +34,3 @@ tabix -p bed $resources/gencode.v43.primary_assembly.gene_name.bed.gz
 # And I can't find a resource that has the correct naming scheme for hg38.
 zcat $resources/00-common_all.vcf.gz | sed '/^[0-9XY]/s/^/chr/' | bgzip > $resources/dbsnp151_common.hg38.vcf.gz
 tabix -p vcf $resources/dbsnp151_common.hg38.vcf.gz
-
-
-
