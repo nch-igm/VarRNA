@@ -1,5 +1,7 @@
 #!/bin/env perl
 
+# Written by James Fitch and revised for flexibility in input handling.
+
 $quant_file = shift;
 $gentrome = shift;
 
