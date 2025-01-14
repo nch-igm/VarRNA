@@ -2,8 +2,8 @@ rule classify_variants:
     input:
         feats_csv="../results/{sample}/Matrix/{sample}.processed_features.csv",
         ann_tsv="../results/{sample}/Matrix/{sample}.features.tsv",
-        model_ta="data/xgb_trueartifact.pkl",
-        model_gs="data/xgb_germsom.pkl",
+        model_ta=config["models"]["xgb_trueartifact"],
+        model_gs=config["models"]["xgb_germsom"],
     output:
         "../results/{sample}/Predictions/{sample}.annotated_predictions.csv"
     threads: 1
