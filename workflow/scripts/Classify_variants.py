@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-import sys, os
-import argparse
+import sys
 import pickle
 import pandas as pd
 
@@ -50,4 +49,3 @@ df_out = df_out.loc[df.index]
 df_out['Model_Label'] = y_hat
 
 df_out.to_csv(output)
-

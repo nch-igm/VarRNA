@@ -1,7 +1,6 @@
-import sys, os
+import sys
 import pandas as pd
 import numpy as np
-import itertools
 from pyfaidx import Fasta
 from  Context_Features import *
 
@@ -10,32 +9,31 @@ output=sys.argv[2]
 ref_genome=sys.argv[3]
 
 # List of features for machine learning in order
-feature_columns = ['QUAL', 'AF', 'DP', 'GQ', 'INFO/AC', 'INFO/AF', 'INFO/BaseQRankSum', 'INFO/DP', 'INFO/FS', 'INFO/MLEAC', 'INFO/MLEAF', 'INFO/MPOS',
-       'INFO/NCount', 'INFO/QD', 'INFO/ReadPosRankSum', 'INFO/SOR', 'INFO/AF.1', 'INFO/AF_raw', 'INFO/AF_male', 'INFO/AF_female',
-       'INFO/AF_afr', 'INFO/AF_ami', 'INFO/AF_amr', 'INFO/AF_asj', 'INFO/AF_eas', 'INFO/AF_fin', 'INFO/AF_nfe', 'INFO/AF_oth',
-       'INFO/AF_sas', 'INFO/TPM', 'INFO/LENGTH', 'INFO/EFF_LENGTH', 'INFO/NUM_READS', 'AD_REF', 'AD_ALT', 'MBQ_REF', 'MBQ_ALT', 'MFRL_REF',
-       'MFRL_ALT', 'GC_CONTENT', 'LINGUISTIC_COMPLEXITY', 'INFO/ExonicFunc.refGene_frameshift_deletion', 'INFO/ExonicFunc.refGene_frameshift_insertion',
-       'INFO/ExonicFunc.refGene_nonframeshift_deletion', 'INFO/ExonicFunc.refGene_nonframeshift_insertion', 'INFO/ExonicFunc.refGene_nonsynonymous_SNV',
-       'INFO/ExonicFunc.refGene_startloss', 'INFO/ExonicFunc.refGene_stopgain', 'INFO/ExonicFunc.refGene_stoploss', 'INFO/ExonicFunc.refGene_synonymous_SNV',
-       'INFO/ExonicFunc.refGene_unknown', 'INFO/CLNREVSTAT_criteria_provided,_conflicting_interpretations',
-       'INFO/CLNREVSTAT_criteria_provided,_multiple_submitters,_no_conflicts', 'INFO/CLNREVSTAT_criteria_provided,_single_submitter',
-       'INFO/CLNREVSTAT_no_assertion_criteria_provided', 'INFO/CLNREVSTAT_no_assertion_provided', 'INFO/CLNREVSTAT_reviewed_by_expert_panel', 'INFO/CLNSIG_Benign',
-       'INFO/CLNSIG_Benign/Likely_benign', 'INFO/CLNSIG_Conflicting_interpretations_of_pathogenicity',
-       'INFO/CLNSIG_Conflicting_interpretations_of_pathogenicity|risk_factor', 'INFO/CLNSIG_Likely_benign', 'INFO/CLNSIG_Likely_pathogenic',
-       'INFO/CLNSIG_Pathogenic', 'INFO/CLNSIG_Pathogenic/Likely_pathogenic', 'INFO/CLNSIG_Uncertain_significance', 'INFO/CLNSIG_association',
-       'INFO/CLNSIG_not_provided', 'INFO/TRANS_TYPE_TEC', 'INFO/TRANS_TYPE_antisense', 'INFO/TRANS_TYPE_non_stop_decay',
-       'INFO/TRANS_TYPE_nonsense_mediated_decay', 'INFO/TRANS_TYPE_processed_transcript',
-       'INFO/TRANS_TYPE_protein_coding', 'INFO/TRANS_TYPE_retained_intron', 'NUCLEOTIDE_CONTEXT_transition', 'NUCLEOTIDE_CONTEXT_transversion',
-       'INFO/SIFT_pred_D', 'INFO/SIFT_pred_T', 'INFO/SIFT4G_pred_D', 'INFO/SIFT4G_pred_T', 'INFO/Polyphen2_HDIV_pred_B', 'INFO/Polyphen2_HDIV_pred_D', 
-       'INFO/Polyphen2_HDIV_pred_P', 'INFO/Polyphen2_HVAR_pred_B', 'INFO/Polyphen2_HVAR_pred_D',
-       'INFO/Polyphen2_HVAR_pred_P', 'INFO/LRT_pred_D', 'INFO/LRT_pred_N', 'INFO/LRT_pred_U', 'INFO/MutationTaster_pred_A',
-       'INFO/MutationTaster_pred_D', 'INFO/MutationTaster_pred_N', 'INFO/MutationTaster_pred_P', 'INFO/MutationAssessor_pred_H',
-       'INFO/MutationAssessor_pred_L', 'INFO/MutationAssessor_pred_M', 'INFO/MutationAssessor_pred_N', 'INFO/FATHMM_pred_D',
-       'INFO/FATHMM_pred_T', 'INFO/PROVEAN_pred_D', 'INFO/PROVEAN_pred_N', 'INFO/MetaSVM_pred_D', 'INFO/MetaSVM_pred_T', 'INFO/MetaLR_pred_D',
-       'INFO/MetaLR_pred_T', 'INFO/MetaRNN_pred_D', 'INFO/MetaRNN_pred_T', 'INFO/PrimateAI_pred_D', 'INFO/PrimateAI_pred_T', 'INFO/DEOGEN2_pred_D',
-       'INFO/DEOGEN2_pred_T', 'INFO/BayesDel_addAF_pred_D', 'INFO/BayesDel_addAF_pred_T', 'INFO/BayesDel_noAF_pred_D',
-       'INFO/BayesDel_noAF_pred_T', 'INFO/ClinPred_pred_D', 'INFO/ClinPred_pred_T', 'INFO/phyloP100way_vertebrate', 'INFO/phyloP100way_vertebrate_rankscore',
-       'INFO/phyloP30way_mammalian', 'INFO/phyloP30way_mammalian_rankscore', 'INFO/cosmic70', 'indel']
+feature_columns = ['QUAL', 'AF', 'GQ', 'INFO/BaseQRankSum', 'INFO/FS', 'INFO/MPOS',
+       'INFO/QD', 'INFO/ReadPosRankSum', 'INFO/SOR', 'INFO/AF_raw',
+       'INFO/LENGTH', 'AD_REF', 'AD_ALT', 'MBQ_REF', 'MBQ_ALT', 'MFRL_REF',
+       'MFRL_ALT', 'GC_CONTENT', 'LINGUISTIC_COMPLEXITY',
+       'INFO/TRANS_TYPE_non_stop_decay',
+       'INFO/TRANS_TYPE_nonsense_mediated_decay',
+       'INFO/TRANS_TYPE_processed_transcript',
+       'INFO/TRANS_TYPE_protein_coding', 'INFO/TRANS_TYPE_retained_intron',
+       'NUCLEOTIDE_CONTEXT_transition', 'NUCLEOTIDE_CONTEXT_transversion',
+       'INFO/SIFT_pred_D', 'INFO/SIFT_pred_T', 'INFO/SIFT4G_pred_D',
+       'INFO/SIFT4G_pred_T', 'INFO/Polyphen2_HDIV_pred_B',
+       'INFO/Polyphen2_HDIV_pred_D', 'INFO/Polyphen2_HDIV_pred_P',
+       'INFO/Polyphen2_HVAR_pred_B', 'INFO/Polyphen2_HVAR_pred_D',
+       'INFO/Polyphen2_HVAR_pred_P', 'INFO/LRT_pred_D', 'INFO/LRT_pred_N',
+       'INFO/LRT_pred_U', 'INFO/MutationTaster_pred_A',
+       'INFO/MutationTaster_pred_D', 'INFO/MutationTaster_pred_N',
+       'INFO/MutationTaster_pred_P', 'INFO/FATHMM_pred_D',
+       'INFO/FATHMM_pred_T', 'INFO/PROVEAN_pred_D', 'INFO/PROVEAN_pred_N',
+       'INFO/MetaSVM_pred_D', 'INFO/MetaLR_pred_D', 'INFO/MetaRNN_pred_D',
+       'INFO/PrimateAI_pred_D', 'INFO/PrimateAI_pred_T', 'INFO/DEOGEN2_pred_D',
+       'INFO/DEOGEN2_pred_T', 'INFO/BayesDel_addAF_pred_D',
+       'INFO/BayesDel_noAF_pred_D', 'INFO/ClinPred_pred_D',
+       'INFO/ClinPred_pred_T', 'INFO/phyloP100way_vertebrate',
+       'INFO/phyloP100way_vertebrate_rankscore', 'INFO/phyloP30way_mammalian',
+       'INFO/phyloP30way_mammalian_rankscore', 'INFO/cosmic70', 'indel']
 
 
 df = pd.read_csv(input, sep='\t')
@@ -49,12 +47,10 @@ df['POS'] = df['POS'].astype(str)
 df[['AD_REF','AD_ALT']] = df['AD'].str.split(',',expand=True).astype(int)
 df[['MBQ_REF', 'MBQ_ALT']] = df['INFO/MBQ'].str.split(',',expand=True).astype(int)
 df[['MFRL_REF', 'MFRL_ALT']] = df['INFO/MFRL'].str.split(',',expand=True).astype(int)
-df[['MMQ_REF', 'MMQ_ALT']] = df['INFO/MMQ'].str.split(',',expand=True).astype(int)
-df = df.drop(['AD', 'INFO/MBQ', 'INFO/MFRL', 'INFO/MMQ'], axis=1)
+df = df.drop(['AD', 'INFO/MBQ', 'INFO/MFRL'], axis=1)
 
 # Convert gnomad columns missing values to zero
-gnomad_cols = ['INFO/AF.1', 'INFO/AF_raw', 'INFO/AF_male', 'INFO/AF_female', 'INFO/AF_afr', 'INFO/AF_ami', 'INFO/AF_amr', 'INFO/AF_asj', 'INFO/AF_eas', 'INFO/AF_fin', 'INFO/AF_nfe', 'INFO/AF_oth', 'INFO/AF_sas']
-df[gnomad_cols] = df[gnomad_cols].replace(np.NAN, 0)
+df['INFO/AF_raw'] = df['INFO/AF_raw'].replace(np.NAN, 0)
 
 # Add context features
 nc_convert = {'AG':'transition', 'GA':'transition', 'CT':'transition', 'TC':'transition', 
@@ -85,11 +81,8 @@ df = pd.get_dummies(df, columns=['INFO/ExonicFunc.refGene', 'INFO/CLNREVSTAT', '
                         'INFO/MutationAssessor_pred', 'INFO/FATHMM_pred', 'INFO/PROVEAN_pred',
                         'INFO/MetaSVM_pred', 'INFO/MetaLR_pred', 'INFO/MetaRNN_pred',
                         'INFO/PrimateAI_pred', 'INFO/DEOGEN2_pred', 'INFO/BayesDel_addAF_pred',
-                        'INFO/BayesDel_noAF_pred', 'INFO/ClinPred_pred', ])
+                        'INFO/BayesDel_noAF_pred', 'INFO/ClinPred_pred'])
 
-# Drop columns with zero variance (e.g. all values are the same)
-# Also drop GT since it is exactly the same info as INFO/AC
-df = df.drop(['INFO/AN', 'INFO/ExcessHet', 'INFO/MQ', 'INFO/MQRankSum', 'MMQ_REF', 'MMQ_ALT', 'GT'], axis=1)
 
 # Row filtering
 df = df[(df['DP'] >=10)]
