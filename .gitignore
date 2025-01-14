@@ -4,4 +4,5 @@ dependencies/*
 !dependencies/mamba_environment.yml
 
 resources/*
+!resources/vcf_header.txt
 
