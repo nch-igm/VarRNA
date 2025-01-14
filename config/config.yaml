@@ -5,24 +5,28 @@ samples: "../config/samples.csv"
 
 dependencies:
   salmon: "../dependencies/salmon-1.9.0_linux_x86_64/bin/salmon"
-  salmon_index: "../resources/alias/hg38/salmon_partial_sa_index/default/"
+  salmon_index: "../dependencies/gencode.v47.transcripts_index/"
   annovar: "../dependencies/annovar"
   annovar_db: "../dependencies/human_db/"
 
 reference:
   fasta: "../resources/GRCh38.p13.genome.fa"
   gtf: "../resources/gencode.v43.primary_assembly.annotation.gtf"
+  transcriptome: "../resources/gencode.v47.transcripts.fa.gz"
+  gentrome: "../resources/ref/gentrome.fa.gz"
 
 
 # These should preferrably in the resources directory, but no need to duplicate files right now...
 annotation_resources:
   dpsnp: "../resources/dbsnp151_common.hg38.vcf.gz"
-  kg_indel: "/path/to/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz"
-  mills_devine: "/path/to/Homo_sapiens_assembly38.known_indels.vcf.gz"
-  exome_bed: "/path/to/IDT.Exomev2.targets.GRCh38.sorted.merged.bed"
-  rep_mask: "/path/to/repmask_hg38.bed"
-  rna_edit: "/path/to/RNAedit.sorted.vcf.gz"
+  exome_bed: "../resources/ref/IDT.Exomev2.targets.GRCh38.sorted.merged.bed"
+  rep_mask: "../resources/repmask_hg38.bed"
+  rna_edit: "../resources/RNAedit.sorted.vcf.gz"
   genes_bed: "../resources/gencode.v43.primary_assembly.gene_name.bed.gz"
+
+models:
+  trueartifact: "../resources/xgb/xgb_trueartifact.pkl"
+  germsom: "../resources/xgb/xgb_germsom.pkl"
 
 params:
   gatk:
