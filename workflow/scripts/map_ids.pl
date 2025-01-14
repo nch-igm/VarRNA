@@ -1,8 +1,7 @@
 #!/bin/env perl
 
-#./map_to_old_ids.pl /igm/projects/CH_results/JLE-032/JLE_032_M21-6286_S-2021-032149-R/salmon/quant.sf
-
 $quant_file = shift;
+$gentrome = shift;
 
 print "Input file: $quant_file\n";
 
@@ -21,8 +20,8 @@ foreach $line (`cat $quant_file`) {
 print "Renaming $quant_file -> ${quant_file}.orig\n";
 `mv $quant_file ${quant_file}.orig`;
 
-print "Reading /igm/apps/salmon/gencode_v28_transcripts_salmon-1.9.0/gentrome.fa.gz\n";
-foreach $line (`zcat /igm/apps/salmon/gencode_v28_transcripts_salmon-1.9.0/gentrome.fa.gz`) {
+print "Reading $gentrome\n";
+foreach $line (`zcat $gentrome`) {
     chomp $line;
     if ($line =~ m/^>(.*?)\|.*/) {
 	$old_id = $line;
@@ -30,7 +29,6 @@ foreach $line (`zcat /igm/apps/salmon/gencode_v28_transcripts_salmon-1.9.0/gentr
 	$new_id = $1;
 	
 	$new_to_old{$new_id} = $old_id;
-	#print "$old_id -> $new_id\n";
     }
 }
 
@@ -47,7 +45,6 @@ foreach $line (`cat ${quant_file}.orig`) {
 	$old_id = $new_to_old{$cols[0]};
 
 	if (! defined($new_to_old{$cols[0]}) ) {
-	    #print "Can't find old id for: $cols[0]\n";
 	    $old_id = $cols[0];
 	}
 

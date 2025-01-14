@@ -16,10 +16,11 @@ rule salmon_quant_reads:
 
 rule modify_names:
     input:
-        "../results/{sample}/salmon/quant.sf",
+        quant="../results/{sample}/salmon/quant.sf",
+        gentrome=config["reference"]["gentrome"],
     output:
         "../results/{sample}/salmon/quant.sf.orig",
     log:
         "logs/salmon/modify_names.{sample}.log",
     shell:
-        "scripts/map_ids.pl {input}"
+        "scripts/map_ids.pl {input.quant} {input.gentrome}"
