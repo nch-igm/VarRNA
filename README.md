@@ -51,6 +51,30 @@ bash get_resources.sh
 bash process_resources.sh
 ```
 
+You should have the following resources:
+```
+resources/
+    dbsnp151_common.hg38.vcf.gz
+    dbsnp151_common.hg38.vcf.gz.tbi
+    gencode.v43.primary_assembly.annotation.gtf
+    gencode.v43.primary_assembly.gene_name.bed.gz
+    gencode.v43.primary_assembly.gene_name.bed.gz.tbi
+    gencode.v47.transcripts.fa.gz
+    GRCh38.p13.genome.dict
+    GRCh38.p13.genome.fa
+    GRCh38.p13.genome.fa.fai
+    ref/
+        gentrome.fa.gz
+        IDT.Exomev2.targets.GRCh38.sorted.merged.bed
+    repmask_hg38.bed
+    RNAedit.sorted.vcf.gz
+    RNAedit.sorted.vcf.gz.tbi
+    vcf_header.txt
+    xgb/
+        xgb_germsom.pkl
+        xgb_trueartifact.pkl
+```
+
 
 Input data
 ======
