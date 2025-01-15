@@ -1,7 +1,10 @@
 ######################################################
-# EDIT THESE FILES TO ADD YOUR OWN SAMPLE PATHS 
+# EDIT THIS FILES TO ADD YOUR OWN SAMPLE PATHS 
 samples: "../config/samples.csv"
 ######################################################
+
+# If you have any custom paths, add them below.
+# Make sure your reference fasta matches the reference used for alignment.
 
 dependencies:
   salmon: "../dependencies/salmon-1.9.0_linux_x86_64/bin/salmon"
@@ -16,7 +19,6 @@ reference:
   gentrome: "../resources/ref/gentrome.fa.gz"
 
 
-# These should preferrably in the resources directory, but no need to duplicate files right now...
 annotation_resources:
   dpsnp: "../resources/dbsnp151_common.hg38.vcf.gz"
   exome_bed: "../resources/ref/IDT.Exomev2.targets.GRCh38.sorted.merged.bed"
