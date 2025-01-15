@@ -1,9 +1,11 @@
-######################################################
-# EDIT THIS FILES TO ADD YOUR OWN SAMPLE PATHS 
-samples: "../config/samples.csv"
-######################################################
+# If necessary, change environment variables to match your environment setup
+micromamba_path: "$HOME/micromamba/etc/profile.d/micromamba.sh"
+micromamba_env: "varrna"
 
-# If you have any custom paths, add them below.
+# Edit this file to add your own sample paths
+samples: "../config/samples.csv"
+
+# If you have any custom paths, change them below.
 # Make sure your reference fasta matches the reference used for alignment.
 
 dependencies:
