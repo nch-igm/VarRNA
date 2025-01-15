@@ -24,7 +24,6 @@ cd VarRNA
 
 ## Set up the environment
 Install [micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html). Create and activate the environment:
-
 ```
 micromamba env create -f dependencies/mamba_environment.yml
 micromamba activate varrna
@@ -33,7 +32,6 @@ micromamba activate varrna
 ## Install ANNOVAR
 
 Download and extract [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/user-guide/download/) (requires user agreement):
-
 ```bash
 wget <link/to/annovar/tar/file> -P dependencies/
 tar -xvzf dependencies/annovar.latest.tar.gz -C dependencies/
@@ -59,7 +57,6 @@ Input data
 
 ## A. FASTQ files
 Prepare RNA-Seq FASTQ files by performing quality control (e.g., FastQC) and read trimming. Use the provided scripts to align reads with STAR:
-
 ```bash
 cd Alignment
 bash get_star.sh              # Download STAR
@@ -70,7 +67,7 @@ bash star_alignment.sh <sample>  # Align reads
 
 ## B. BAM files
 
-Ensure consistency between the reference genome used for alignment and the pipeline’s reference. Update `config/config.yaml` (reference - fasta) to match the BAM file reference.
+Ensure consistency between the reference genome used for alignment and the pipeline's reference. Update `config/config.yaml` (reference - fasta) to match the BAM file reference.
 
 
 ## Sample input file
@@ -81,7 +78,7 @@ Modify the ```config/samples.csv``` file to add the sample names and paths.
 Output files
 ======
 Key results include annotated VCF files and variant predictions:
-```
+```bash
 results/<sample>/VCFs/annotated/<sample>.annotated.vcf.gz
 results/<sample>/Predictions/<sample>.annotated_predictions.csv
 ```
@@ -91,8 +88,7 @@ Execution
 
 ## HPC environment
 For batch systems (e.g., SGE), use scheduler.sh. Create a directory for separate log files:
-
-```
+```bash
 cd workflow
 mkdir qsub_logfiles
 qsub scheduler.sh
@@ -101,7 +97,7 @@ Adjust --jobs to the number of concurrent jobs supported by your system. Refer t
 
 ## Local execution
 Run the pipeline locally by specifying available cores:
-```
+```bash
 cd workflow
 snakemake --cores 2
 ```
