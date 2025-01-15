@@ -20,7 +20,7 @@ reference:
 
 
 annotation_resources:
-  dpsnp: "../resources/dbsnp151_common.hg38.vcf.gz"
+  dbsnp: "../resources/dbsnp151_common.hg38.vcf.gz"
   exome_bed: "../resources/ref/IDT.Exomev2.targets.GRCh38.sorted.merged.bed"
   rep_mask: "../resources/repmask_hg38.bed"
   rna_edit: "../resources/RNAedit.sorted.vcf.gz"
