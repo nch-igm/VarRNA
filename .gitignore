@@ -6,3 +6,4 @@ dependencies/*
 resources/*
 !resources/vcf_header.txt
 
+workflow/.snakemake/
