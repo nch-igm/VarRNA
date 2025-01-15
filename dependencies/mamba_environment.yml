@@ -4,14 +4,14 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - bcftools=1.14
-  - bedtools=2.30
-  - fastqc=0.11
+  - bcftools=1.21
+  - bedtools=2.31.1
+  - fastqc=0.11.9
   - gatk4=4.2.6.1
   - numpy=1.23.1
   - pandas=1.4.3
-  - perl=5.32
-  - python=3.9
+  - perl=5.32.1
+  - python=3.9.19
   - snakemake=7.9.0
   - pyfaidx=0.8.1.2
   - xgboost=2.1.1
