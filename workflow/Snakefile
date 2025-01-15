@@ -1,4 +1,12 @@
-shell.prefix("source $HOME/miniconda3/etc/profile.d/conda.sh; conda activate varoc; ")
+import os
+
+configfile: "../config/config.yaml"
+
+micromamba_path = os.path.expandvars(config["micromamba_path"])
+micromamba_env = config["micromamba_env"]
+
+shell.prefix(f"source {micromamba_path}; micromamba activate {micromamba_env}; ")
+#shell.prefix("source $HOME/micromamba/etc/profile.d/micromamba.sh; micromamba activate varrna; ")
 
 include: "rules/setup.smk"
 
