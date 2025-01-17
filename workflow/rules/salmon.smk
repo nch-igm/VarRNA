@@ -14,13 +14,13 @@ rule salmon_quant_reads:
     shell:
         "{params.salmon} quant --threads 10 -l A -o ../results/{wildcards.sample}/salmon/ -i {input.index} -1 {input.r1} -2 {input.r2}"
 
-rule modify_names:
-    input:
-        quant="../results/{sample}/salmon/quant.sf",
-        gentrome=config["reference"]["gentrome"],
-    output:
-        "../results/{sample}/salmon/quant.sf.orig",
-    log:
-        "logs/salmon/modify_names.{sample}.log",
-    shell:
-        "scripts/map_ids.pl {input.quant} {input.gentrome}"
+# rule modify_names:
+#    input:
+#        quant="../results/{sample}/salmon/quant.sf",
+#        gentrome=config["reference"]["gentrome"],
+#    output:
+#        "../results/{sample}/salmon/quant.sf.orig",
+#    log:
+#        "logs/salmon/modify_names.{sample}.log",
+#    shell:
+#        "scripts/map_ids.pl {input.quant} {input.gentrome}"
