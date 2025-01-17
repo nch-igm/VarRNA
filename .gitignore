@@ -15,3 +15,6 @@ results/*
 workflow/logs/*
 workflow/qsub_logfiles/*
 workflow/scheduler.o*
+
+# Cache
+workflow/scripts/__pycache__/
