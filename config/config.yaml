@@ -18,7 +18,6 @@ reference:
   fasta: "../resources/GRCh38.p13.genome.fa"
   gtf: "../resources/gencode.v43.primary_assembly.annotation.gtf"
   transcriptome: "../resources/gencode.v47.transcripts.fa.gz"
-  gentrome: "../resources/ref/gentrome.fa.gz"
 
 
 annotation_resources:
