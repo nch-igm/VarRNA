@@ -9,7 +9,7 @@ output=sys.argv[2]
 ref_genome=sys.argv[3]
 
 # List of features for machine learning in order
-feature_columns = ['QUAL', 'GQ', 'INFO/BaseQRankSum', 'INFO/FS', 'INFO/MPOS',
+feature_columns = ['QUAL', 'AF', 'GQ', 'INFO/BaseQRankSum', 'INFO/FS', 'INFO/MPOS',
        'INFO/QD', 'INFO/ReadPosRankSum', 'INFO/SOR', 'INFO/AF_raw',
        'INFO/LENGTH', 'AD_REF', 'AD_ALT', 'MBQ_REF', 'MBQ_ALT', 'MFRL_REF',
        'MFRL_ALT', 'GC_CONTENT', 'LINGUISTIC_COMPLEXITY',
