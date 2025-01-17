@@ -36,7 +36,8 @@ df = pd.read_csv(input, index_col=0)
 # Predict variant labels
 label_dicts = [{1: 'True Variant', 0: 'Artifact'}, {0: 'Germline', 1: 'Somatic'}]
 y_hat_ta = predict_labels(df, model_ta, label_dicts[0])
-y_hat_gs = predict_labels(df, model_gs, label_dicts[1])
+df_gs = df.drop(columns=['AF'])
+y_hat_gs = predict_labels(df_gs, model_gs, label_dicts[1])
 y_hat = combine_labels(y_hat_ta, y_hat_gs)
 
 # Add label to annotated variants tsv
