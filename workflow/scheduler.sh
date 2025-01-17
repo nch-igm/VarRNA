@@ -10,4 +10,4 @@ snakemake -p \
     --jobname "sm_{rule}_{wildcards.sample}_{jobid}" \
     --jobs 64 \
     --rerun-incomplete \
-    --latency-wait 10 
+    --latency-wait 60 
