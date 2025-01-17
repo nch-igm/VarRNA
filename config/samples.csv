@@ -1,2 +1,2 @@
 sample,file_path
-TN22-176194_S48,/igm/projects/Audrey_RNAseq_Analysis/scripts/RNA_VC/test_repo/igm-rna-variant-calling/results/TN22-176194_S48/BAMs/TN22-176194_S48.Aligned.sortedByCoord.out.bam
+IGMCH0102_100,/igm/projects/Audrey_RNAseq_Analysis/scripts/RNA_VC/test_repo/igm-rna-variant-calling/results/IGMCH0102_100/BAMs/IGMCH0102_100.recal.bam
