@@ -36,7 +36,7 @@ rule combine_gene_tpm:
     input:
         genes_bed=config["annotation_resources"]["genes_bed"],
         salmon="../results/{sample}/salmon/quant.sf",
-        salmon_mod="../results/{sample}/salmon/quant.sf.orig",
+        #salmon_mod="../results/{sample}/salmon/quant.sf.orig",
     output:
         temp("../results/{sample}/salmon/genes_tpm.bed"),
     threads: 1
