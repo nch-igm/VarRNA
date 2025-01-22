@@ -18,3 +18,4 @@ workflow/scheduler.o*
 
 # Cache
 workflow/scripts/__pycache__/
+workflow/.attach*
