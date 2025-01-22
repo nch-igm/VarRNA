@@ -3,8 +3,9 @@
 fasta="../resources/GRCh38.p13.genome.fa"
 gtf="../resources/gencode.v43.primary_assembly.annotation.gtf"
 
-r1=$1.R1.fastq.gz
-r2=$1.R2.fastq.gz
+input_dir=../../RNA_VC/public_data_for_varrna_example
+r1=$input_dir/${1}_1.fastq.gz
+r2=$input_dir/${1}_2.fastq.gz
 
 outdir=../results/$1/BAMs
 
