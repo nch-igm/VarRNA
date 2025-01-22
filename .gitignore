@@ -1,6 +1,7 @@
 # Dependencies and resources
 dependencies/*
 !dependencies/mamba_environment.yml
+Alignment/dependencies/*
 
 resources/*
 !resources/vcf_header.txt
