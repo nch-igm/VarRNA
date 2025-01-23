@@ -57,6 +57,9 @@ You should have the following resources:
 resources/
     dbsnp151_common.hg38.vcf.gz
     dbsnp151_common.hg38.vcf.gz.tbi
+    example_data/
+        SRR31139166.Aligned.sortedByCoord.out.chr22.bam
+        SRR31139166.Aligned.sortedByCoord.out.chr22.bam.bai
     gencode.v43.primary_assembly.annotation.gtf
     gencode.v43.primary_assembly.gene_name.bed.gz
     gencode.v43.primary_assembly.gene_name.bed.gz.tbi
@@ -126,3 +129,34 @@ Run the pipeline locally by specifying available cores:
 cd workflow
 snakemake --cores 2
 ```
+
+## Example usage - testing the pipeline
+
+### Step 1: setup
+To confirm that VarRNA is set up correctly, use the provided test dataset referenced in the `config/samples.csv` file:
+```
+sample,file_path
+SRR31139166,../results/SRR31139166/BAMs/SRR31139166.Aligned.sortedByCoord.out.chr22.bam
+```
+
+### Step 2: run the test
+Test the pipeline with the same command used to run future samples. E.g.: 
+```bash
+cd workflow
+mkdir qsub_logfiles
+qsub scheduler.sh
+```
+
+
+### Step 3: check outputs
+Upon successful completion you should see this in the snakemake logs (`.snakemake/log/*`)
+```
+Finished job 0.
+45 of 45 steps (100%) done
+```
+
+Ensure the final output file contains variants with predictions:
+```
+results/SRR31139166/Predictions/SRR31139166.annotated_predictions.csv
+```
+
