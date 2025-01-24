@@ -11,12 +11,18 @@ rna_samples = pd.read_csv(config["samples"], comment="#").set_index("sample", dr
 ##### Wildcard constraints #####
 wildcard_constraints:
     sample="|".join(rna_samples.index),
-    chrom = "|".join(["chr"+str(x) for x in range(1,23)] + ["chrX", "chrY"])
+    chrom = "|".join(["chr"+str(x) for x in range(1,23)] + ["chrX", "chrY"]),
+    sex = "|".join(["male", "female"])
 
 ##### Helper functions #####
 def get_rna_sample_bams(wildcards):
     """Get input RNA BAM file of a given sample."""
     return(rna_samples.loc[wildcards.sample, "file_path"])
+
+def get_sample_sex(wildcards):
+    """Get the sex of a given sample."""
+    sex = rna_samples.loc[wildcards.sample, "sex"]
+    return(sex)
 
 def get_chroms():
     """Get list of chromosomes to paralellize variant calling."""
@@ -40,10 +46,3 @@ def get_all_inputs():
     return(
         expand("../results/{sample}/Predictions/{sample}.annotated_predictions.csv", sample=rna_samples.index),
     )
-
-
-
-
-
-
-

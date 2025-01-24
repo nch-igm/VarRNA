@@ -8,12 +8,15 @@ rule haplotype_caller:
     log:
         "logs/gatk/haplotypecaller/{sample}.{chrom}.log",
     threads: 4
+    params:
+        ploidy=lambda wildcards: 1 if wildcards.chrom in ["chrX", "chrY"] and get_sample_sex(wildcards) == "male" else 2
     shell:
         "gatk HaplotypeCaller "
         "-I {input.bam} "
         "-R {input.ref} "
         "-O {output.vcf} "
         "-L {wildcards.chrom} "
+        "--sample-ploidy {params.ploidy} "
         "--dont-use-soft-clipped-bases "
         "--standard-min-confidence-threshold-for-calling 20 "
         "--max-reads-per-alignment-start 0 "
