@@ -1,7 +1,7 @@
 rule salmon_quant_reads:
     input:
-        r1="../results/{sample}/FASTQs/{sample}.R1.fastq",
-        r2="../results/{sample}/FASTQs/{sample}.R2.fastq",
+        r1="../results/{sample}/FASTQs/{sample}.R1.fastq.gz",
+        r2="../results/{sample}/FASTQs/{sample}.R2.fastq.gz",
         index=config["dependencies"]["salmon_index"],
     output:
         quant="../results/{sample}/salmon/quant.sf",
