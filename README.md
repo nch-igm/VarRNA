@@ -135,8 +135,8 @@ snakemake --cores 2
 ### Step 1: setup
 To confirm that VarRNA is set up correctly, use the provided test dataset referenced in the `config/samples.csv` file:
 ```
-sample,file_path
-SRR31139166,../results/SRR31139166/BAMs/SRR31139166.Aligned.sortedByCoord.out.chr22.bam
+sample,file_path,sex
+SRR31139166,../results/SRR31139166/BAMs/SRR31139166.Aligned.sortedByCoord.out.chr22.bam,female
 ```
 
 ### Step 2: run the test
